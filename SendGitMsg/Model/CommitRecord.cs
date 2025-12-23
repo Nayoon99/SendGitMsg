@@ -1,16 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace SendGitMsg.Model
 {
-    internal class CommitRecord
+    internal class CommitRecord : INotifyPropertyChanged
     {
-        public string Date { get; set; } = string.Empty;       // 커밋 날짜
-        public int CommitCnt { get; set; } = 0;                // 커밋 횟수
-        public string SmsStts { get; set; } = string.Empty;    // SMS 전송 결과 (성공/실패/미전송)
-        public string SlackStts { get; set; } = string.Empty;  // Slack 전송 결과 (성공/실패/미전송)
+        private string _date = string.Empty;
+        public string Date
+        {
+            get => _date;
+            set { _date = value; OnPropertyChanged(nameof(Date)); }
+        }
+
+        private int _commitCnt = 0;
+        public int CommitCnt
+        {
+            get => _commitCnt;
+            set { _commitCnt = value; OnPropertyChanged(nameof(CommitCnt)); }
+        }
+
+        private string _smsStts = string.Empty;
+        public string SmsStts
+        {
+            get => _smsStts;
+            set { _smsStts = value; OnPropertyChanged(nameof(SmsStts)); }
+        }
+
+        private string _slackStts = string.Empty;
+        public string SlackStts
+        {
+            get => _slackStts;
+            set { _slackStts = value; OnPropertyChanged(nameof(SlackStts)); }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
