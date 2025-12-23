@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SendGitMsg" 
         xmlns:vm="clr-namespace:SendGitMsg.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Git 커밋 자동 체크 프로그램" Height="450" Width="800">
 
     <Window.DataContext>
         <vm:MainViewModel/>

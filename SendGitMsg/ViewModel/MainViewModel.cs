@@ -80,15 +80,10 @@ namespace SendGitMsg.ViewModel
 
             if (commitCount == 0)
             {
-                string message =
-                    $"{DateTime.Now:MM월 dd일} 커밋 횟수 0번.. ㅠ.ㅠ 벌금을 송금합니다.";
-
+                string message = $"{DateTime.Now:MM월 dd일} 커밋 횟수 0번.. ㅠ.ㅠ 벌금을 송금합니다.";
                 bool sent = await _smsService.SendSmsAsync(message);
-                smsStatus = sent ? "전송 완료" : "전송 실패";
-
-                record.SmsStts = smsStatus;
+                record.SmsStts = sent ? "전송 완료" : "전송 실패";
             }
-
 
             CommitLog.InsertCommitLog(today, commitCount, smsStatus, "대기");
 

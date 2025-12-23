@@ -14,19 +14,17 @@ namespace SendGitMsg.service
     internal class SmsService
     {
         private readonly Config _config;
+        private readonly HttpClient _client = new HttpClient();
 
         public SmsService(Config config)
         {
             _config = config;
+            _client.BaseAddress = new Uri("https://api.coolsms.co.kr");
         }
 
+        // 성공 or 실패 반환
         public async Task<bool> SendSmsAsync(string message)
         {
-            using HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://api.coolsms.co.kr");
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
             var payload = new
             {
                 api_key = _config.CoolSmsApiKey,
@@ -42,7 +40,7 @@ namespace SendGitMsg.service
 
             try
             {
-                var response = await client.PostAsync("/messages/v4/send", content);
+                var response = await _client.PostAsync("/messages/v4/send", content);
                 return response.IsSuccessStatusCode;
             }
             catch
