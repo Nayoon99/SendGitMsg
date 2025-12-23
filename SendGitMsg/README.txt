@@ -15,6 +15,8 @@
 
 ## 🛠 기술 스택
 
+- Visual Studio .NET 8.0
+- git version 2.52.0.windows.1
 - Language: **C#**
 - UI: **WPF**
 - Architecture: **MVVM 패턴**
@@ -50,3 +52,15 @@ SendGitMsg
 
  cf. ViewModel => "언제 보내야 하는지"만 판단
      Service => "어떻게 보내는지"만 담당
+
+
+## 설치 패키지
+- SQLite : System.Data.SQLite
+- JSON 처리: Newtonsoft.Json
+- SMS 전송: CoolSms
+
+## 구조
+config.json   ← 민감 정보 (API Key, 전화번호)
+Config.cs     ← config.json 매핑용 클래스
+SmsService    ← Config 주입받아서 문자 전송
+MainViewModel ← SmsService 사용
