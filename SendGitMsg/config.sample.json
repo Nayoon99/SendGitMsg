@@ -1,0 +1,6 @@
+﻿{
+  "CoolSmsApiKey": "개인 API Key",
+  "CoolSmsApiSecret": "개인 API Secret",
+  "FromPhone": "010XXXXXXXX",
+  "ToPhone": "010XXXXXXXX"
+}
